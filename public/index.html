@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Event Management Dashboard</h1>
+
+        <!-- Tabs for navigation -->
+        <div class="tabs">
+            <button class="tab-link active" onclick="openTab('searchTab')">Search Events</button>
+            <button class="tab-link" onclick="openTab('fetchTab')">Fetch Table Data</button>
+        </div>
+
+        <!-- Search Tab -->
+        <div id="searchTab" class="tab-content">
+            <h2>Search Events</h2>
+            <form id="searchForm">
+                <label for="searchQuery">Search Query:</label>
+                <input type="text" id="searchQuery" placeholder="Enter search terms">
+
+                <label for="searchLocation">Location ID:</label>
+                <input type="text" id="searchLocation" placeholder="Enter location ID">
+
+                <label for="searchCategory">Category:</label>
+                <input type="text" id="searchCategory" placeholder="Enter category">
+
+                <label for="minTickets">Min Tickets:</label>
+                <input type="number" id="minTickets" placeholder="Minimum available tickets">
+
+                <label for="maxTickets">Max Tickets:</label>
+                <input type="number" id="maxTickets" placeholder="Maximum available tickets">
+
+                <label for="dateTime">Date & Time:</label>
+                <input type="datetime-local" id="dateTime">
+
+                <button type="submit" class="btn">Search</button>
+            </form>
+            <div id="searchResult" class="result-box"></div>
+
+        </div>
+
+        <!-- Fetch Tab -->
+        <div id="fetchTab" class="tab-content" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="margin: 0; font-size: 1.5rem;">Fetch Table Data</h2>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="showSection('insertSection')" class="btn" style="padding: 5px 10px; font-size: 1rem; display: flex; align-items: center; gap: 5px;">
+                        <i class="fa fa-plus"></i> Insert
+                    </button>
+                    <button onclick="showSection('updateSection')" class="btn" style="padding: 5px 10px; font-size: 1rem; display: flex; align-items: center; gap: 5px;">
+                        <i class="fa fa-pencil-alt"></i> Update
+                    </button>
+                    <button onclick="showSection('deleteSection')" class="btn" style="padding: 5px 10px; font-size: 1rem; display: flex; align-items: center; gap: 5px;">
+                        <i class="fa fa-trash-alt"></i> Delete
+                    </button>
+                </div>
+            </div>
+            <form id="fetchForm" style="display: flex; align-items: center; margin-bottom: 20px;">
+                <label for="fetchTableName" style="margin-right: 10px;">Table Name:</label>
+                <input type="text" id="fetchTableName" placeholder="Enter table name" required style="margin-right: 10px;">
+                <button type="submit" class="btn">Fetch</button>
+            </form>
+            <div id="fetchResult" class="result-box"></div>
+        
+            <!-- Update and Delete Options -->
+            <div id="updateButtonContainer"></div>
+        </div>
+        
+        <section id="insertSection" class="form-section" style="display: none;">
+            <h2>Insert Event Data</h2>
+            <form id="insertForm">
+                <label for="insertTable">Table Name:</label>
+                <input type="text" id="insertTable" placeholder="Enter table name" required>
+                <label for="insertColumns">Columns (comma separated):</label>
+                <input type="text" id="insertColumns" placeholder="e.g., col1, col2" required>
+                <label for="insertValues">Values (comma separated):</label>
+                <input type="text" id="insertValues" placeholder="e.g., val1, val2" required>
+                <button type="submit" class="btn">Insert</button>
+            </form>
+            <div id="insertResult" class="result-box"></div>
+        </section>
+        
+        <section id="updateSection" class="form-section" style="display: none;">
+            <h2>Update Event Data</h2>
+            <form id="updateForm">
+                <label for="updateTable">Table Name:</label>
+                <input type="text" id="updateTable" placeholder="Enter table name" required>
+                <label for="updateColumns">Columns (comma separated):</label>
+                <input type="text" id="updateColumns" placeholder="e.g., col1, col2" required>
+                <label for="updateValues">Values (comma separated):</label>
+                <input type="text" id="updateValues" placeholder="e.g., val1, val2" required>
+                <label for="updatePrimaryColumn">Primary Column:</label>
+                <input type="text" id="updatePrimaryColumn" placeholder="e.g., id" required>
+                <label for="updatePrimaryValue">Primary Value:</label>
+                <input type="text" id="updatePrimaryValue" placeholder="e.g., 123" required>
+                <button type="submit" class="btn">Update</button>
+            </form>
+            <div id="updateResult" class="result-box"></div>
+        </section>
+        
+        <section id="deleteSection" class="form-section" style="display: none;">
+            <h2>Delete Event Data</h2>
+            <form id="deleteForm">
+                <label for="deleteTable">Table Name:</label>
+                <input type="text" id="deleteTable" placeholder="Enter table name" required>
+                <label for="deletePrimaryColumn">Primary Column:</label>
+                <input type="text" id="deletePrimaryColumn" placeholder="e.g., id" required>
+                <label for="deletePrimaryValue">Primary Value:</label>
+                <input type="text" id="deletePrimaryValue" placeholder="e.g., 123" required>
+                <button type="submit" class="btn">Delete</button>
+            </form>
+            <div id="deleteResult" class="result-box"></div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
